@@ -1,0 +1,966 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenVision Startup</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --deep-green: #0f3d2e;
+        --light-green: #3cb371;
+        --soft-green: #5fd19a;
+        --very-light-green: #eafaf2;
+        --para-green: #4fae84;
+        --accent-green: #2e8b57;
+        --hero-gradient:
+          radial-gradient(
+            circle at 20% 30%,
+            rgba(95, 209, 154, 0.4),
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(60, 179, 113, 0.35),
+            transparent 40%
+          ),
+          linear-gradient(135deg, #f3fcf7, #e6f8ef);
+        --text-light: #ffffff;
+        --card-bg: #ffffff;
+        --shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+        --radius: 20px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #f7fdf9, #edf9f3);
+        color: var(--deep-green);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      body.no-scroll {
+        overflow: hidden;
+      }
+
+      p {
+        color: var(--para-green);
+      }
+
+      section {
+        padding: 100px 10%;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin-bottom: 20px;
+      }
+
+      h2 {
+        font-size: 2.3rem;
+        text-align: center;
+        color: var(--deep-green);
+      }
+
+      /* NAVBAR */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 18px 10%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        z-index: 1000;
+      }
+
+      .logo {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: var(--deep-green);
+      }
+
+      .nav-links a {
+        margin-left: 30px;
+        text-decoration: none;
+        font-weight: 500;
+        color: var(--para-green);
+        transition: 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--light-green);
+      }
+
+      /* Navbar CTA Button */
+      .nav-cta {
+        margin-left: 20px;
+        padding: 10px 22px;
+        border-radius: 50px;
+        border: none;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+
+        background: linear-gradient(
+          135deg,
+          var(--soft-green),
+          var(--light-green)
+        );
+        color: white;
+        transition: all 0.3s ease;
+      }
+
+      .nav-cta:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 25px rgba(46, 125, 50, 0.35);
+      }
+
+      .nav-cta:active {
+        transform: translateY(0);
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--hero-gradient);
+        padding: 140px 10% 80px 10%;
+        gap: 40px;
+      }
+
+      .hero-content {
+        max-width: 600px;
+        animation: slideLeft 1s ease forwards;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        line-height: 0.55;
+        white-space: pre-line;
+      }
+
+      .hero h1 .accent {
+        background: linear-gradient(
+          90deg,
+          var(--soft-green),
+          var(--light-green)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+        margin: 25px 0;
+      }
+
+      .btn {
+        display: inline-block;
+        padding: 14px 34px;
+        border-radius: 40px;
+        background: var(--light-green);
+        color: var(--text-light);
+        text-decoration: none;
+        font-weight: 500;
+        transition: 0.3s ease;
+      }
+
+      .btn:hover {
+        background: var(--accent-green);
+        transform: translateY(-4px);
+      }
+
+      .hero-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        animation: slideRight 1s ease forwards;
+      }
+
+      .hero-image img {
+        width: 560px;
+        max-width: 100%;
+        border-radius: 30px;
+        box-shadow: var(--shadow);
+      }
+
+      /* SERVICES */
+      .services-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        margin-top: 60px;
+      }
+
+      .service-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 20px;
+        background: var(--very-light-green);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+      }
+
+      .service-icon svg {
+        width: 30px;
+        height: 30px;
+        stroke: var(--light-green);
+      }
+
+      .card {
+        background: var(--card-bg);
+        padding: 35px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        transition: 0.4s ease;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+
+      .card.show {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .card:hover {
+        transform: translateY(-12px);
+      }
+
+      .card h3 {
+        color: var(--deep-green);
+        margin-bottom: 15px;
+      }
+
+      /* ABOUT CEO */
+      .about {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        flex-wrap: wrap;
+        margin-top: 60px;
+      }
+
+      .about img {
+        width: 220px;
+        border-radius: 20px;
+        box-shadow: var(--shadow);
+      }
+
+      .ceo-name {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: var(--deep-green);
+      }
+      .ceo-companies {
+        font-size: 0.95rem;
+        color: var(--deep-green);
+        margin-bottom: 15px;
+      }
+
+      .about-text {
+        flex: 1;
+      }
+
+      /* TESTIMONIALS */
+      .testimonials {
+        background: var(--very-light-green);
+      }
+
+      .testimonial-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        margin-top: 60px;
+      }
+
+      .testimonial-card {
+        background: var(--text-light);
+        padding: 30px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        transition: 0.3s ease;
+      }
+
+      .testimonial-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .testimonial-text {
+        font-style: italic;
+        color: var(--deep-green);
+        margin-bottom: 20px;
+      }
+
+      .testimonial-user {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .testimonial-user img {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .testimonial-user h4 {
+        font-size: 0.95rem;
+        margin: 0;
+        color: var(--deep-green);
+      }
+      .testimonial-user span {
+        font-size: 0.8rem;
+        color: var(--para-green);
+      }
+
+      /* Appointment Section */
+      .appointment-section {
+        padding: 80px 20px;
+        background: linear-gradient(135deg, #e8f5e9, #ffffff);
+        text-align: center;
+      }
+
+      .appointment-container {
+        max-width: 700px;
+        margin: auto;
+      }
+
+      .appointment-container h2 {
+        font-size: 36px;
+        margin-bottom: 15px;
+        color: var(--deep-green);
+      }
+
+      .appointment-container p {
+        color: var(--light-green);
+        margin-bottom: 30px;
+        font-size: 18px;
+      }
+
+      .appointment-btn {
+        padding: 14px 35px;
+        font-size: 16px;
+        border: none;
+        border-radius: 50px;
+        background: var(--light-green);
+        color: var(--text-light);
+        cursor: pointer;
+        transition: 0.3s ease;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .appointment-btn:hover {
+        background: var(--accent-green);
+        transform: translateY(-3px);
+      }
+
+      /* Modal */
+      .appointment-dialog {
+        border: none;
+        border-radius: 16px;
+        padding: 0;
+        width: 100%;
+        max-width: 500px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        animation: dialogFade 0.25s ease;
+
+        position: fixed;
+        inset: 0;
+        margin: auto;
+      }
+
+      .appointment-dialog::backdrop {
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(2px);
+      }
+
+      @keyframes dialogFade {
+        from {
+          transform: translateY(20px) scale(0.95);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      }
+
+      .dialog-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 25px 30px 10px;
+      }
+
+      .dialog-header h3 {
+        margin: 0;
+        color: var(--deep-green);
+      }
+
+      .close-btn {
+        background: none;
+        border: none;
+        font-size: 22px;
+        cursor: pointer;
+        color: #888;
+      }
+
+      .dialog-form {
+        padding: 20px 30px 30px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--accent-green);
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        outline: none;
+        color: var(--deep-green);
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-color: var(--accent-green);
+      }
+
+      .error {
+        font-size: 12px;
+        color: red;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        background: var(--light-green);
+        color: var(--text-light);
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      .submit-btn:hover {
+        background: var(--accent-green);
+      }
+
+      /* FOOTER */
+      .footer {
+        background: linear-gradient(135deg, #eafaf2, #dff6ea);
+        padding: 80px 10% 40px 10%;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      .footer-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 60px;
+        flex-wrap: wrap;
+        margin-bottom: 50px;
+      }
+
+      .footer-brand h3 {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+        color: var(--deep-green);
+      }
+
+      .footer-brand p {
+        max-width: 400px;
+        color: var(--para-green);
+      }
+
+      .footer-contact h3 {
+        margin-bottom: 20px;
+        color: var(--deep-green);
+      }
+
+      .footer-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 18px;
+        color: var(--para-green);
+        font-size: 0.95rem;
+      }
+
+      .footer-icon {
+        width: 40px;
+        height: 40px;
+        background: var(--text-light);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+        color: var(--light-green);
+      }
+
+      .footer-icon svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        font-size: 0.85rem;
+        color: var(--para-green);
+      }
+
+      @keyframes slideLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-60px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes slideRight {
+        from {
+          opacity: 0;
+          transform: translateX(60px);
+        }
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @media (max-width: 1100px) {
+        .services-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .testimonial-container {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 700px) {
+        .services-container {
+          grid-template-columns: 1fr;
+        }
+        .testimonial-container {
+          grid-template-columns: 1fr;
+        }
+        .hero {
+          flex-direction: column;
+          text-align: center;
+        }
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+        .about {
+          flex-direction: column;
+          text-align: center;
+        }
+        .nav-links {
+          display: none;
+        }
+        .footer-top {
+          flex-direction: column;
+          gap: 40px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">Shape Uup</div>
+
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <!-- CTA Button -->
+      <button class="nav-cta">Book Now</button>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-content">
+        <h1>
+          Grow <span class="accent">Smarter.</span><br />
+          Plan <span class="accent">Better.</span><br />
+          Succeed <span class="accent">Faster.</span>
+        </h1>
+        <p>
+          Empowering individuals and businesses through expert Finance, Career
+          Development, Counselling, and Professional Training solutions.
+        </p>
+        <a href="#services" class="btn"
+          >Explore Services <span class="arrow">&#8594;</span></a
+        >
+      </div>
+      <div class="hero-image">
+        <img
+          src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
+          alt="Team Collaboration"
+        />
+      </div>
+    </section>
+
+    <section id="services">
+      <h2>Our Services</h2>
+      <div class="services-container">
+        <div class="card">
+          <div class="service-icon">
+            <svg fill="none" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 8c-3 0-5 2-5 5h10c0-3-2-5-5-5z" />
+              <circle cx="12" cy="12" r="9" />
+            </svg>
+          </div>
+          <h3>Finance</h3>
+          <p>
+            Strategic planning, investment guidance, and business advisory
+            services tailored for sustainable growth.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="service-icon">
+            <svg fill="none" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M4 19h16" />
+              <path d="M6 15l3-4 3 3 4-6" />
+            </svg>
+          </div>
+          <h3>Career Development</h3>
+          <p>
+            Personalized career roadmaps, resume building, interview
+            preparation, and mentorship programs.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="service-icon">
+            <svg fill="none" stroke-width="2" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M8 12h8" />
+            </svg>
+          </div>
+          <h3>Counselling</h3>
+          <p>
+            Professional counselling services supporting mental wellness and
+            life decision-making clarity.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="service-icon">
+            <svg fill="none" stroke-width="2" viewBox="0 0 24 24">
+              <path d="M12 2v20" />
+              <path d="M2 12h20" />
+            </svg>
+          </div>
+          <h3>Training</h3>
+          <p>
+            Skill-based programs enhancing leadership, communication, and
+            technical expertise.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>About Our CEO</h2>
+      <div class="about">
+        <img
+          src="https://images.unsplash.com/photo-1560250097-0b93528c311a"
+          alt="CEO"
+        />
+        <div class="about-text">
+          <div class="ceo-name">Mr. Arjun Mehta</div>
+          <div class="ceo-companies">
+            Ex-Consultant at Global Finance Corp • Former Director at GrowthEdge
+            Solutions
+          </div>
+          <p>
+            With over 15 years of experience in finance, corporate leadership,
+            and professional mentorship, he has guided hundreds toward
+            measurable success.
+          </p>
+          <p>
+            His mission is to combine strategy, innovation, and ethical
+            leadership to empower sustainable personal and business growth.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <h2>What Our Clients Say</h2>
+      <div class="testimonial-container">
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "GreenVision transformed my career path completely. The mentorship
+            and structured guidance helped me land my dream job."
+          </div>
+          <div class="testimonial-user">
+            <img
+              src="https://randomuser.me/api/portraits/women/44.jpg"
+              alt="Client"
+            />
+            <div>
+              <h4>Priya Sharma</h4>
+              <span>Software Engineer</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "Their financial advisory service helped scale my business
+            sustainably within just one year."
+          </div>
+          <div class="testimonial-user">
+            <img
+              src="https://randomuser.me/api/portraits/men/32.jpg"
+              alt="Client"
+            />
+            <div>
+              <h4>Rahul Verma</h4>
+              <span>Entrepreneur</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-text">
+            "The training sessions were practical, engaging, and highly
+            impactful for our leadership team."
+          </div>
+          <div class="testimonial-user">
+            <img
+              src="https://randomuser.me/api/portraits/women/68.jpg"
+              alt="Client"
+            />
+            <div>
+              <h4>Ananya Kapoor</h4>
+              <span>HR Manager</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Book Appointment Section -->
+    <section class="appointment-section">
+      <div class="appointment-container">
+        <h2>Book an Appointment</h2>
+        <p>
+          Have questions or need expert guidance? Schedule a consultation with
+          our team today.
+        </p>
+        <button class="appointment-btn" id="openModal">Book Now</button>
+      </div>
+    </section>
+
+    <!-- Modal -->
+
+    <dialog id="appointmentDialog" class="appointment-dialog">
+      <div class="dialog-header">
+        <h3>Schedule Your Appointment</h3>
+        <button class="close-btn" id="closeDialog">&times;</button>
+      </div>
+
+      <form id="appointmentForm" method="dialog" class="dialog-form">
+        <div class="form-group">
+          <label>Name</label>
+          <input type="text" id="name" placeholder="Enter your name" />
+          <small class="error" id="nameError"></small>
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" id="email" placeholder="Enter your email" />
+          <small class="error" id="emailError"></small>
+        </div>
+
+        <div class="form-group">
+          <label>Message</label>
+          <textarea
+            id="message"
+            rows="4"
+            placeholder="Your message..."
+          ></textarea>
+          <small class="error" id="messageError"></small>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit</button>
+      </form>
+    </dialog>
+
+    <footer id="contact" class="footer">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <h3>Shape Uup</h3>
+          <p>
+            Empowering individuals and businesses through expert guidance and
+            innovative solutions.
+          </p>
+        </div>
+
+        <div class="footer-contact">
+          <h3>Contact Info</h3>
+
+          <div class="footer-item">
+            <div class="footer-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <path d="M4 4h16v16H4z" stroke="currentColor" />
+                <path d="M4 4l8 7 8-7" stroke="currentColor" />
+              </svg>
+            </div>
+            <span>info@greenvision.com</span>
+          </div>
+
+          <div class="footer-item">
+            <div class="footer-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <path
+                  d="M22 16.92V21a2 2 0 0 1-2.18 2A19.8 19.8 0 0 1 3 5.18 2 2 0 0 1 5 3h4.09a2 2 0 0 1 2 1.72l.7 4.11a2 2 0 0 1-.57 1.82l-2.2 2.2a16 16 0 0 0 6.88 6.88l2.2-2.2a2 2 0 0 1 1.82-.57l4.11.7A2 2 0 0 1 22 16.92z"
+                  stroke="currentColor"
+                />
+              </svg>
+            </div>
+            <span>+91 98765 43210</span>
+          </div>
+
+          <div class="footer-item">
+            <div class="footer-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                <path
+                  d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"
+                  stroke="currentColor"
+                />
+                <circle cx="12" cy="10" r="3" stroke="currentColor" />
+              </svg>
+            </div>
+            <span>123 Business Avenue, City, State 700001, India</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">© 2026 GreenVision. All rights reserved.</div>
+    </footer>
+
+    <script>
+      const cards = document.querySelectorAll(".card");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("show");
+          });
+        },
+        { threshold: 0.2 },
+      );
+      cards.forEach((card) => observer.observe(card));
+
+      const dialog = document.getElementById("appointmentDialog");
+      const openBtn = document.getElementById("openModal");
+      const closeBtn = document.getElementById("closeDialog");
+      const form = document.getElementById("appointmentForm");
+      const navCTABtn = document.querySelector(".nav-cta");
+
+      function openDialog() {
+        dialog.showModal();
+        document.body.classList.add("no-scroll");
+      }
+
+      navCTABtn.addEventListener("click", openDialog);
+      openBtn.addEventListener("click", openDialog);
+
+      closeBtn.addEventListener("click", () => dialog.close());
+
+      dialog.addEventListener("close", () => {
+        document.body.classList.remove("no-scroll");
+      });
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        let valid = true;
+
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const message = document.getElementById("message");
+
+        const nameError = document.getElementById("nameError");
+        const emailError = document.getElementById("emailError");
+        const messageError = document.getElementById("messageError");
+
+        nameError.textContent = "";
+        emailError.textContent = "";
+        messageError.textContent = "";
+
+        if (name.value.trim() === "") {
+          nameError.textContent = "Name is required";
+          valid = false;
+        }
+
+        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,}$/;
+        if (!email.value.match(emailPattern)) {
+          emailError.textContent = "Enter a valid email";
+          valid = false;
+        }
+
+        if (message.value.trim().length < 10) {
+          messageError.textContent = "Message must be at least 10 characters";
+          valid = false;
+        }
+
+        if (valid) {
+          alert("Appointment request submitted successfully!");
+          form.reset();
+          dialog.close();
+        }
+      });
+    </script>
+  </body>
+</html>
